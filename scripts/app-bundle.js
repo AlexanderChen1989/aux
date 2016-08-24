@@ -23,6 +23,11 @@ define('app',['exports', 'rxjs'], function (exports, _rxjs) {
         observer.next('Sergi');
         observer.complete();
       });
+
+      this.allMoves = _rxjs.Observable.fromEvent(document, 'mousemove');
+      this.allMoves.subscribe(function (e) {
+        console.log(e.clientX, e.clientY);
+      });
       this.subject = new _rxjs.Subject();
       this.subject.subscribe(function (next) {
         return console.log("Subject: ", next);

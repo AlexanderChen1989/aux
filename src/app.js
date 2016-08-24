@@ -1,4 +1,4 @@
-import {Observable, Subject} from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 export class App {
   constructor() {
@@ -8,6 +8,11 @@ export class App {
       observer.next('Jen');
       observer.next('Sergi');
       observer.complete(); // We are done
+    });
+
+    this.allMoves = Observable.fromEvent(document, 'mousemove')
+    this.allMoves.subscribe(function(e) {
+      console.log(e.clientX, e.clientY);
     });
     this.subject = new Subject();
     this.subject.subscribe(
