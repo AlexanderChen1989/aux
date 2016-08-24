@@ -1,4 +1,4 @@
-define('app',['exports', 'rxjs'], function (exports, _rxjs) {
+define('app',['exports', 'rxjs', 'aurelia-framework'], function (exports, _rxjs, _aureliaFramework) {
   'use strict';
 
   Object.defineProperty(exports, "__esModule", {
@@ -12,10 +12,13 @@ define('app',['exports', 'rxjs'], function (exports, _rxjs) {
     }
   }
 
-  var App = exports.App = function () {
-    function App() {
+  var _dec, _class;
+
+  var App = exports.App = (_dec = (0, _aureliaFramework.inject)(Element), _dec(_class = function () {
+    function App(element) {
       _classCallCheck(this, App);
 
+      this.element = element;
       this.message = 'Hello World!';
       this.observable = _rxjs.Observable.create(function (observer) {
         observer.next('Simon');
@@ -24,10 +27,6 @@ define('app',['exports', 'rxjs'], function (exports, _rxjs) {
         observer.complete();
       });
 
-      this.allMoves = _rxjs.Observable.fromEvent(document, 'mousemove');
-      this.allMoves.subscribe(function (e) {
-        console.log(e.clientX, e.clientY);
-      });
       this.subject = new _rxjs.Subject();
       this.subject.subscribe(function (next) {
         return console.log("Subject: ", next);
@@ -55,7 +54,7 @@ define('app',['exports', 'rxjs'], function (exports, _rxjs) {
     };
 
     return App;
-  }();
+  }()) || _class);
 });
 define('environment',["exports"], function (exports) {
   "use strict";
@@ -115,5 +114,5 @@ define('resources/index',["exports"], function (exports) {
   exports.configure = configure;
   function configure(config) {}
 });
-define('text!app.html', ['module'], function(module) { module.exports = "<template>\n  <h1>${message}</h1>\n  <button click.trigger=\"subscribe()\">Sub</button>\n  <button click.trigger=\"subjectTest()\">S</button>\n</template>\n"; });
+define('text!app.html', ['module'], function(module) { module.exports = "<template>\n  <h1 id=\"head\">${message}</h1>\n  <button click.trigger=\"subscribe()\">Sub</button>\n  <button click.trigger=\"subjectTest()\">S</button>\n</template>\n"; });
 //# sourceMappingURL=app-bundle.js.map
