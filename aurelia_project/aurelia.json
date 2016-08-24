@@ -114,6 +114,10 @@
           "aurelia-templating",
           "aurelia-templating-binding",
           {
+            "name": "rxjs",
+            "path": "../node_modules/rxjs/bundles/Rx.umd"
+          },
+          {
             "name": "text",
             "path": "../scripts/text"
           },
