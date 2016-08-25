@@ -114,5 +114,88 @@ define('resources/index',["exports"], function (exports) {
   exports.configure = configure;
   function configure(config) {}
 });
-define('text!app.html', ['module'], function(module) { module.exports = "<template>\n  <h1 id=\"head\">${message}</h1>\n  <button click.trigger=\"subscribe()\">Sub</button>\n  <button click.trigger=\"subjectTest()\">S</button>\n</template>\n"; });
+define('resources/attributes/number',['exports', 'aurelia-framework'], function (exports, _aureliaFramework) {
+  'use strict';
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+  exports.NumberCustomAttribute = undefined;
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var _dec, _class;
+
+  var NumberCustomAttribute = exports.NumberCustomAttribute = (_dec = (0, _aureliaFramework.inject)(Element), _dec(_class = function () {
+    function NumberCustomAttribute(element) {
+      _classCallCheck(this, NumberCustomAttribute);
+
+      this.element = element;
+    }
+
+    NumberCustomAttribute.prototype.valueChanged = function valueChanged(newValue, oldValue) {};
+
+    return NumberCustomAttribute;
+  }()) || _class);
+});
+define('resources/value-converters/email',["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var EmailValueConverter = exports.EmailValueConverter = function () {
+    function EmailValueConverter() {
+      _classCallCheck(this, EmailValueConverter);
+    }
+
+    EmailValueConverter.prototype.toView = function toView(value) {};
+
+    EmailValueConverter.prototype.fromView = function fromView(value) {};
+
+    return EmailValueConverter;
+  }();
+});
+define('login-form',["exports"], function (exports) {
+  "use strict";
+
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var LoginForm = exports.LoginForm = function () {
+    function LoginForm() {
+      _classCallCheck(this, LoginForm);
+
+      this.form = {};
+      this.form.email = "";
+      this.form.password = "";
+    }
+
+    LoginForm.prototype.submit = function submit() {
+      console.log(this.form);
+    };
+
+    return LoginForm;
+  }();
+});
+define('text!app.html', ['module'], function(module) { module.exports = "<template>\n  <require from=\"./login-form\"></require>\n  <h1 id=\"head\">${message}</h1>\n  <button click.trigger=\"subscribe()\">Sub</button>\n  <button click.trigger=\"subjectTest()\">S</button>\n  <login-form></login-form>\n</template>\n"; });
+define('text!login-form.html', ['module'], function(module) { module.exports = "<template>\n  <form>\n    Email: <input type=\"text\" value.bind=\"form.email\">\n    <br>\n    Password: <input type=\"password\" value.bind=\"form.password\">\n    <br>\n    <button click.trigger=\"submit()\">Submit</button>\n  </form>\n</template>\n"; });
 //# sourceMappingURL=app-bundle.js.map
